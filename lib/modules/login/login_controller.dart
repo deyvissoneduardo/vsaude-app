@@ -9,7 +9,7 @@ class LoginController extends GetxController {
   GlobalKey<FormState> formKey = GlobalKey();
   @override
   Future<void> onInit() async {
-    // await singIn();
+    await singIn();
     controllerEmail.obs;
     controllerPassword.obs;
     formKey.obs;

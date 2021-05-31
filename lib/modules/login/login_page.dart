@@ -8,7 +8,7 @@ class LoginPage extends GetView<LoginController> {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
           alignment: Alignment.center,
           child: Form(
             key: controller.formKey,
