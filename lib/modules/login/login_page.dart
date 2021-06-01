@@ -8,7 +8,7 @@ class LoginPage extends GetView<LoginController> {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
           alignment: Alignment.center,
           child: Form(
             key: controller.formKey,
@@ -24,11 +24,17 @@ class LoginPage extends GetView<LoginController> {
                     controller: controller.controllerPassword,
                     decoration: InputDecoration(hintText: 'Senha')),
                 // btn logar
-                ElevatedButton(
-                    onPressed: () => controller.singIn(),
-                    child: Center(
-                        child: Text('Logar',
-                            style: Theme.of(context).textTheme.bodyText1)))
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: ElevatedButton(
+                      onPressed: () => controller.singIn(),
+                      child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 15),
+                          alignment: Alignment.center,
+                          child: Text('Logar',
+                              style: Theme.of(context).textTheme.bodyText1))),
+                )
               ],
             ),
           ),

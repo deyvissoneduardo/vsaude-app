@@ -1,18 +1,41 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:vsaude_getx/core/rest_client/rest_client_exception.dart';
+import 'package:vsaude_getx/core/rest_client/rest_client_response.dart';
 
 class LoginInterceptor extends Interceptor {
+  late RestClientResponse<LoginResult> restClientResponse;
+  late RestClientException restClientException;
+
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {}
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    print('REQUEST => ${options.method} \n'
+        '=> ${options.data} \n'
+        '=> ${options.path} \n'
+        '=> ${options.uri} \n'
+        '=> ${options.headers}');
+    if (restClientResponse.statusCode == 200) handler.next(options.data);
+  }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (response.statusCode == 500 ||
-        response.statusMessage == 'InvalidUserNameOrEmailAddress') {}
+    print('RESPONSE => ${response.statusCode} \n'
+        '=> ${response.statusMessage} \n'
+        '=> ${response.headers} \n'
+        '=> ${response.requestOptions}');
+    response.data = jsonDecode(response.data);
+    return handler.resolve(response);
+    // if (response.statusCode == 500 ||
+    //     response.statusMessage == 'InvalidUserNameOrEmailAddress') {}
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    print(err);
+    print('DIOERROR => ${err.response} \n'
+        '=> ${err.requestOptions} \n'
+        '=> ${err.message}');
+    return handler.reject(err);
   }
 }
 

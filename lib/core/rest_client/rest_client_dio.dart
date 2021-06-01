@@ -8,8 +8,9 @@ import 'interceptor/login_interceptor.dart';
 class RestClientDio implements RestClient {
   late Dio _dio;
 
-  static final _baseOptions =
-      BaseOptions(baseUrl: 'https://hml.vsaude.com.br/api/TokenAuth');
+  static final _baseOptions = BaseOptions(
+    baseUrl: 'https://hml.vsaude.com.br/api/TokenAuth',
+  );
 
   RestClientDio() {
     _dio = Dio(_baseOptions);
@@ -21,23 +22,28 @@ class RestClientDio implements RestClient {
   @override
   Future<RestClientResponse<T>> post<T>(String path,
       {data,
+      Options? options,
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? headers}) async {
     try {
       final response = await _dio.post(path,
-          data: data,
+          data: {data},
           queryParameters: queryParameters,
-          options: Options(headers: headers));
+          options: Options(
+            method: 'POST',
+            headers: headers,
+          ));
 
       return RestClientResponse(
           data: response.data,
           statusCode: response.statusCode,
           message: response.statusMessage);
     } on DioError catch (e) {
+      print('RESTCLIENTDIOERROD => ${e.type.index} \n');
       throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode,
-          error: e.error);
+          error: e.error,
+          message: e.message,
+          statusCode: e.response!.statusCode);
     }
   }
 }
