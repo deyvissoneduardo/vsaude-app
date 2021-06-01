@@ -24,11 +24,17 @@ class LoginPage extends GetView<LoginController> {
                     controller: controller.controllerPassword,
                     decoration: InputDecoration(hintText: 'Senha')),
                 // btn logar
-                ElevatedButton(
-                    onPressed: () => controller.singIn(),
-                    child: Center(
-                        child: Text('Logar',
-                            style: Theme.of(context).textTheme.bodyText1)))
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: ElevatedButton(
+                      onPressed: () => controller.singIn(),
+                      child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 15),
+                          alignment: Alignment.center,
+                          child: Text('Logar',
+                              style: Theme.of(context).textTheme.bodyText1))),
+                )
               ],
             ),
           ),

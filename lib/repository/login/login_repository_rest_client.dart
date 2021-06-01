@@ -13,10 +13,8 @@ class LoginRepositoryRestClient implements LoginRepository {
   @override
   Future<LoginModel> singInApp(LoginModel loginModel) async {
     try {
-      final result = await _restClient.post(
-        '/AuthenticateMobileUser',
-        data: {LoginModel},
-      );
+      final result = await _restClient.post('/AuthenticateMobileUser',
+          data: {LoginModel.fromJson(loginModel.toJson())});
       print(result.data);
       return LoginModel.fromMap(result.data);
     } on DioError catch (e, s) {

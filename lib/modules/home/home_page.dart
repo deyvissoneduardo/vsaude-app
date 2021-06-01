@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import './home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
-@override
-Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('HomePage'),),
-        body: Container(),
+      appBar: AppBar(
+        title: Text('HomePage'),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Text('logado'),
+      ),
     );
-}
+  }
 }

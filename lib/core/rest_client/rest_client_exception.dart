@@ -1,11 +1,11 @@
 class RestClientException implements Exception {
-  final String? message;
-  final int? statusCode;
-  final dynamic error;
+  late String message;
+  late int statusCode;
+  dynamic error;
 
   RestClientException({
-    this.message,
-    this.statusCode,
-    this.error,
+    message,
+    statusCode,
+    error,
   });
 }
