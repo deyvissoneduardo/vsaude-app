@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vsaude_getx/models/login/login_model.dart';
-import 'package:vsaude_getx/repository/login/login_repository.dart';
+import 'package:vsaude_getx/repository/login/login_repository_rest_client.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail =
@@ -28,22 +28,19 @@ class LoginController extends GetxController {
   }
 
   Future<void> singIn() async {
-    LoginRepository repository = Get.find();
-    if (!controllerEmail.text.isEmail ||
-        controllerEmail.text.isEmpty ||
-        !controllerEmail.text.contains('@')) print('**email invalido**');
-    if (controllerPassword.text.isEmpty) print('**senha invalida**');
+    LoginRepositoryRestClient repository = Get.find();
+    // if (controllerEmail.text.isEmail) print('*** campo email vazio***');
+    // if (!controllerEmail.text.contains('@')) print('**email invalido**');
+    // if (controllerPassword.text.isEmpty) print('**senha invalida**');
     print(controllerEmail.text);
     print(controllerPassword.text);
-    await repository.singInApp(LoginModel(
+    await repository.singInApp(
+      LoginModel(
         mobileProjectId: 'fcc80c1d-6040-4e57-a23c-abb301653616',
-        userNameOrEmailAddrees: controllerEmail.text,
-        password: controllerPassword.text));
-    print('morreu aqui');
-    nextToPage();
-  }
-
-  nextToPage() {
+        userNameOrEmailAddress: controllerEmail.text,
+        password: controllerPassword.text,
+      ),
+    );
     Get.toNamed('/home');
   }
 }

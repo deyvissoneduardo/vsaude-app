@@ -3,8 +3,6 @@ import 'package:vsaude_getx/core/rest_client/rest_client.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client_exception.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client_response.dart';
 
-import 'interceptor/login_interceptor.dart';
-
 class RestClientDio implements RestClient {
   late Dio _dio;
 
@@ -14,9 +12,9 @@ class RestClientDio implements RestClient {
 
   RestClientDio() {
     _dio = Dio(_baseOptions);
-    _dio.interceptors.addAll([
-      LoginInterceptor(),
-    ]);
+    // _dio.interceptors.addAll([
+    //   LoginInterceptor(),
+    // ]);
   }
 
   @override
@@ -26,24 +24,20 @@ class RestClientDio implements RestClient {
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? headers}) async {
     try {
-      final response = await _dio.post(path,
-          data: {data},
-          queryParameters: queryParameters,
-          options: Options(
-            method: 'POST',
-            headers: headers,
-          ));
-
+      final response = await _dio.post(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(headers: headers),
+      );
       return RestClientResponse(
           data: response.data,
           statusCode: response.statusCode,
           message: response.statusMessage);
     } on DioError catch (e) {
-      print('RESTCLIENTDIOERROD => ${e.type.index} \n');
       throw RestClientException(
-          error: e.error,
-          message: e.message,
-          statusCode: e.response!.statusCode);
+          message: e.response?.statusMessage,
+          statusCode: e.response?.statusCode);
     }
   }
 }

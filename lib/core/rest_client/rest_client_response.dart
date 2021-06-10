@@ -1,7 +1,7 @@
 class RestClientResponse<T> {
-  late T data;
-  late int statusCode;
-  late String message;
+  T? data;
+  int? statusCode;
+  String? message;
 
   RestClientResponse({
     data,

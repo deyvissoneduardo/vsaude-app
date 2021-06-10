@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:vsaude_getx/core/exception/repository_exception.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client.dart';
@@ -13,10 +15,12 @@ class LoginRepositoryRestClient implements LoginRepository {
   @override
   Future<LoginModel> singInApp(LoginModel loginModel) async {
     try {
-      final result = await _restClient.post('/AuthenticateMobileUser',
-          data: {LoginModel.fromJson(loginModel.toJson())});
-      print(result.data);
-      return LoginModel.fromMap(result.data);
+      final result = await _restClient.post<LoginModel>(
+        '/AuthenticateMobileUser',
+        data: loginModel.toJson(),
+      );
+      print('******${result.data}**********');
+      return LoginModel.fromMap(loginModel.toMap());
     } on DioError catch (e, s) {
       print(e);
       print(s);
