@@ -1,7 +1,9 @@
-import 'package:form_validation/form_validation.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:vsaude_getx/modules/login/widgets/btn_form/bottom_login_widget.dart';
 import './login_controller.dart';
+import 'widgets/field_forms/email_login_widget.dart';
+import 'widgets/field_forms/password_login_widget.dart';
 
 class LoginPage extends GetView<LoginController> {
   @override
@@ -17,55 +19,11 @@ class LoginPage extends GetView<LoginController> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // email
-                TextFormField(
-                  controller: controller.controllerEmail,
-                  validator: (value) {
-                    var validador = Validator(validators: [
-                      RequiredValidator(),
-                      EmailValidator(),
-                    ]);
-                    return validador.validate(
-                      context: context,
-                      label: 'Campo Obrigatorio',
-                      value: value,
-                    );
-                  },
-                  decoration: InputDecoration(hintText: 'Email'),
-                ),
+                EmailLoginWidget(),
                 // senha
-                TextFormField(
-                  controller: controller.controllerPassword,
-                  validator: (value) {
-                    var validador = Validator(validators: [
-                      RequiredValidator(),
-                      MinNumberValidator(number: 4),
-                    ]);
-                    return validador.validate(
-                      context: context,
-                      label: 'Campo Obrigatorio',
-                      value: value,
-                    );
-                  },
-                  decoration: InputDecoration(hintText: 'Senha'),
-                ),
+                PasswordLoginWidget(),
                 // btn logar
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: ElevatedButton(
-                    onPressed: () => controller.validForm(),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 15,
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Logar',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                  ),
-                )
+                BottomLoginWidget()
               ],
             ),
           ),
