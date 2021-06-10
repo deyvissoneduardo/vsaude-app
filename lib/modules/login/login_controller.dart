@@ -4,10 +4,8 @@ import 'package:vsaude_getx/models/login/login_model.dart';
 import 'package:vsaude_getx/repository/login/login_repository_rest_client.dart';
 
 class LoginController extends GetxController {
-  TextEditingController controllerEmail =
-      TextEditingController(text: 'lbadias@gmail.com');
-  TextEditingController controllerPassword =
-      TextEditingController(text: '123qwe');
+  TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
 
   // @override
@@ -27,6 +25,33 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
+  // valida dados do login
+  validForm() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      emailIsValid();
+      passwordIsValid();
+      singIn();
+    }
+  }
+
+  bool emailIsValid() {
+    if (!controllerEmail.text.contains('@')) {
+      print('emial invalido');
+      return false;
+    }
+    return true;
+  }
+
+  bool passwordIsValid() {
+    if (controllerPassword.text.isEmpty) {
+      print('senha invalida');
+      return false;
+    }
+    return true;
+  }
+
+  // funcao de login
   Future<void> singIn() async {
     LoginRepositoryRestClient repository = Get.find();
     // if (controllerEmail.text.isEmail) print('*** campo email vazio***');
