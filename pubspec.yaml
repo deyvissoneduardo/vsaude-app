@@ -12,9 +12,16 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  # api
   dio: ^4.0.0
   get: ^4.1.4
+  retrofit: ^2.0.0
+  meta: ^1.3.0
+  json_annotation: ^4.0.1
 
+  # fields
+  brasil_fields: ^1.1.3
+  form_validation: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -24,13 +31,26 @@ flutter:
   uses-material-design: true
   assets:
     - .env
+
+# instalcao slidy cli 
+#  => dart pub global activate slidy
+#  => slidy --version
+# link do projeto cli: https://pub.dev/packages/slidy
 vars:
   packges: flutter pub get
   clean: flutter clean
   watch: flutter pub run build_runner watch --delete-conflicting-outputs
   build: flutter pub run build_runner build --delete-conflicting-outputs
 scripts:
+  # limpa projeto, atuliza pacotes, e gera builds novos
+  # slydi run build
   build: $clean & $packges & $watch
+  # limpa projeto, atuliza pacotes, monitora mudancas nos arquivos gerados
+  # slydi run dev
   dev: $clean & $packges & $watch
+  # atualiza packges
+  # slydi run get
   get: $packges
-  clean: $clean
+  # limpa projeto
+  # slydi run clean
+  clean: $clean & $packges
