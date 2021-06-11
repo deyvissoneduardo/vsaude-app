@@ -23,7 +23,19 @@ class LoginPage extends GetView<LoginController> {
                 // senha
                 PasswordLoginWidget(),
                 // btn logar
-                BottomLoginWidget()
+                BottomLoginWidget(),
+                SizedBox(height: 10),
+                TextButton(
+                    onPressed: () {
+                      Get.toNamed('/register_user');
+                    },
+                    child: Container(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        'Cadastre-se',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                    ))
               ],
             ),
           ),
