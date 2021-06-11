@@ -1,5 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:vsaude_getx/modules/register_user/widgets/btn_register_user/btn_register_user_widget.dart';
+import 'package:vsaude_getx/modules/register_user/widgets/fields_form_register_user/field_email_register_user_widget.dart';
+import 'package:vsaude_getx/modules/register_user/widgets/fields_form_register_user/field_name_register_user_widget.dart';
+import 'package:vsaude_getx/modules/register_user/widgets/fields_form_register_user/field_password_register_user_widget.dart';
+import 'package:vsaude_getx/modules/register_user/widgets/fields_form_register_user/field_phone_register_user_widget.dart';
 import './register_user_controller.dart';
 
 class RegisterUserPage extends GetView<RegisterUserController> {
@@ -19,27 +24,12 @@ class RegisterUserPage extends GetView<RegisterUserController> {
                 key: controller.formKey,
                 child: Column(
                   children: [
-                    TextFormField(
-                        controller: controller.controllerName,
-                        decoration: InputDecoration(hintText: 'Nome')),
-                    TextFormField(
-                        controller: controller.controllerEmail,
-                        decoration: InputDecoration(hintText: 'Email')),
-                    TextFormField(
-                        controller: controller.controllerPhone,
-                        decoration: InputDecoration(hintText: 'Telefone')),
-                    TextFormField(
-                        controller: controller.controllerPassword,
-                        decoration: InputDecoration(hintText: 'Senha')),
+                    FieldNameRegisterUserWidget(),
+                    FieldEmailRegisterUserWidget(),
+                    FieldPhoneRegisterUserWidget(),
+                    FielPasswordRegisterUserWidget(),
                     const SizedBox(height: 8),
-                    ElevatedButton(
-                        onPressed: () => controller.regiterUserApp(),
-                        child: Container(
-                          padding: EdgeInsets.all(8),
-                          alignment: Alignment.center,
-                          child: Text('Cadastrar',
-                              style: Theme.of(context).textTheme.button),
-                        ))
+                    BtnRegisterUserWidget()
                   ],
                 )),
           ),
