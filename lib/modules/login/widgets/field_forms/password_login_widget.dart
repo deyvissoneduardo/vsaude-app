@@ -13,6 +13,7 @@ class PasswordLoginWidget extends GetView<LoginController> {
       controller: controller.controllerPassword,
       validator: (value) {
         var validador = Validator(validators: [
+          RequiredValidator(),
           MinLengthValidator(length: 2),
         ]);
         return validador.validate(
