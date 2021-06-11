@@ -3,24 +3,20 @@ import 'package:vsaude_getx/core/rest_client/rest_client.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client_exception.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client_response.dart';
 
-class RestClientDio implements RestClient {
+class RestClientRegistgerUser implements RestClient {
   late Dio _dio;
 
   static final _baseOptions = BaseOptions(
-    baseUrl: 'https://hml.vsaude.com.br/api/TokenAuth',
+    baseUrl: 'https://hml.vsaude.com.br/api/services/app/User',
   );
 
-  RestClientDio() {
+  RestClientRegistgerUser() {
     _dio = Dio(_baseOptions);
-    // _dio.interceptors.addAll([
-    //   LoginInterceptor(),
-    // ]);
   }
-
   @override
   Future<RestClientResponse<T>> post<T>(String path,
-      {data,
-      Options? options,
+      {Options? options,
+      data,
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? headers}) async {
     try {
@@ -31,13 +27,16 @@ class RestClientDio implements RestClient {
         options: Options(headers: headers),
       );
       return RestClientResponse(
-          data: response.data,
-          statusCode: response.statusCode,
-          message: response.statusMessage);
+        data: response.data,
+        message: response.statusMessage,
+        statusCode: response.statusCode,
+      );
     } on DioError catch (e) {
       throw RestClientException(
-          message: e.response?.statusMessage,
-          statusCode: e.response?.statusCode);
+        error: e.error,
+        message: e.response!.statusMessage,
+        statusCode: e.response!.statusCode,
+      );
     }
   }
 }
