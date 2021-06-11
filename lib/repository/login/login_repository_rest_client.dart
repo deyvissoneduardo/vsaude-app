@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:vsaude_getx/core/exception/repository_exception.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client.dart';

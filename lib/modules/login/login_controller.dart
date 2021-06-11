@@ -54,11 +54,6 @@ class LoginController extends GetxController {
   // funcao de login
   Future<void> singIn() async {
     LoginRepositoryRestClient repository = Get.find();
-    // if (controllerEmail.text.isEmail) print('*** campo email vazio***');
-    // if (!controllerEmail.text.contains('@')) print('**email invalido**');
-    // if (controllerPassword.text.isEmpty) print('**senha invalida**');
-    print(controllerEmail.text);
-    print(controllerPassword.text);
     await repository.singInApp(
       LoginModel(
         mobileProjectId: 'fcc80c1d-6040-4e57-a23c-abb301653616',
