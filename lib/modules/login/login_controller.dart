@@ -61,6 +61,10 @@ class LoginController extends GetxController {
         password: controllerPassword.text,
       ),
     );
-    Get.toNamed('/home');
+    Get.offAndToNamed('/home');
+  }
+
+  nextRegisterUser() {
+    Get.toNamed('/register_user');
   }
 }

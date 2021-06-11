@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../login_controller.dart';
 
-class BottomLoginWidget extends GetView<LoginController> {
-  const BottomLoginWidget({Key? key}) : super(key: key);
+class BtnLoginWidget extends GetView<LoginController> {
+  const BtnLoginWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

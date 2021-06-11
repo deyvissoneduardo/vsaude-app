@@ -9,7 +9,7 @@ class FieldPhoneRegisterUserWidget extends GetView<RegisterUserController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller.controllerPhone,
+      controller: controller.controllerPhoneNumber,
       inputFormatters: [
         TelefoneInputFormatter(),
         FilteringTextInputFormatter.digitsOnly,

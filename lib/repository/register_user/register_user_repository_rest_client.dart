@@ -12,8 +12,7 @@ class RegisterUserRepositoryRestClient implements RegisterUserRepository {
   @override
   Future<void> registerUser(RegisterUserModel registerUserModel) async {
     try {
-      final result = await _restClient.post<RegisterUserModel>(
-          '/CreateMobileUser',
+      final result = await _restClient.post<RegisterUserModel>('/Register',
           data: registerUserModel.toJson());
       print('********${result.data}*******');
     } on DioError catch (e, s) {

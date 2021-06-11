@@ -11,7 +11,7 @@ class BtnRegisterUserWidget extends GetView<RegisterUserController> {
     return ElevatedButton(
         onPressed: () => controller.formIsValid(),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.all(10),
           alignment: Alignment.center,
           child: Text('Cadastrar', style: Theme.of(context).textTheme.button),
         ));

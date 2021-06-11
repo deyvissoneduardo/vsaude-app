@@ -5,18 +5,31 @@ import 'package:vsaude_getx/repository/register_user/register_user_repository_re
 
 class RegisterUserController extends GetxController {
   TextEditingController controllerName = TextEditingController();
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerPhone = TextEditingController();
+  TextEditingController controllerSurName = TextEditingController();
+  TextEditingController controllerEmailAddress = TextEditingController();
+  TextEditingController controllerRoles = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
+  TextEditingController controllerPhoneNumber = TextEditingController();
+  TextEditingController controllerPersonalIdentifier = TextEditingController();
+  TextEditingController controllerGender = TextEditingController();
+  TextEditingController controllerBirthday = TextEditingController();
+  TextEditingController controllerInvitation = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   onInit() {
-    controllerEmail.obs;
-    controllerEmail.obs;
-    controllerPhone.obs;
+    // adc observaveis na variavel
+    controllerName.obs;
+    controllerSurName.obs;
+    controllerEmailAddress.obs;
+    controllerRoles.obs;
     controllerPassword.obs;
+    controllerPhoneNumber.obs;
+    controllerPersonalIdentifier.obs;
+    controllerGender.obs;
+    controllerBirthday.obs;
+    controllerInvitation.obs;
 
     formKey.obs;
     super.onInit();
@@ -32,13 +45,19 @@ class RegisterUserController extends GetxController {
   Future<void> regiterUserApp() async {
     RegisterUserRepositoryRestClient repositoryRestClient = Get.find();
     await repositoryRestClient.registerUser(RegisterUserModel(
-      mobileProjectId: 'fcc80c1d-6040-4e57-a23c-abb301653616',
       tenantId: '2',
-      fullName: controllerName.text,
-      emailAddress: controllerEmail.text,
-      phone: controllerPhone.text,
+      name: controllerName.text,
+      surname: controllerSurName.text,
+      emailAddress: controllerEmailAddress.text,
+      isActive: 'true',
       password: controllerPassword.text,
+      personalIdentifier: controllerPersonalIdentifier.text,
+      roles: controllerRoles.text,
+      phoneNumber: controllerPhoneNumber.text,
+      gender: controllerGender.text,
+      birthday: controllerBirthday.text,
+      invitation: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     ));
-    Get.offAndToNamed('home');
+    Get.offAndToNamed('/home');
   }
 }

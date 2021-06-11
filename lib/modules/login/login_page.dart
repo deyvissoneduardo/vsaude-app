@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:vsaude_getx/modules/login/widgets/btn_form/bottom_login_widget.dart';
+import 'package:vsaude_getx/modules/login/widgets/btn_form/btn_login_widget.dart';
 import './login_controller.dart';
+import 'widgets/btn_form/btn_login_register_widget.dart';
 import 'widgets/field_forms/email_login_widget.dart';
 import 'widgets/field_forms/password_login_widget.dart';
 
@@ -23,19 +24,9 @@ class LoginPage extends GetView<LoginController> {
                 // senha
                 PasswordLoginWidget(),
                 // btn logar
-                BottomLoginWidget(),
+                BtnLoginWidget(),
                 SizedBox(height: 10),
-                TextButton(
-                    onPressed: () {
-                      Get.toNamed('/register_user');
-                    },
-                    child: Container(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        'Cadastre-se',
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ),
-                    ))
+                BtnLoginRegisterWidget()
               ],
             ),
           ),

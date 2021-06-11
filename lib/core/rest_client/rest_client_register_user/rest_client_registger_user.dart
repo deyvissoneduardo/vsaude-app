@@ -7,7 +7,7 @@ class RestClientRegistgerUser implements RestClient {
   late Dio _dio;
 
   static final _baseOptions = BaseOptions(
-    baseUrl: 'https://hml.vsaude.com.br/api/services/app/User/',
+    baseUrl: 'https://hml.vsaude.com.br/api/services/app/User',
   );
 
   RestClientRegistgerUser() {
