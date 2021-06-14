@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:get/state_manager.dart';
-import 'package:vsaude_getx/modules/register_user/register_user_controller.dart';
+import 'package:vsaude_getx/modules/create_mobile_user/create_mobile_user_controller.dart';
 
-class FieldPhoneRegisterUserWidget extends GetView<RegisterUserController> {
+class FieldPhoneCreateMobileWidget extends GetView<CreateMobileUserController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller.controllerPhoneNumber,
+      controller: controller.controllerPhone,
       inputFormatters: [
         TelefoneInputFormatter(),
         FilteringTextInputFormatter.digitsOnly,
