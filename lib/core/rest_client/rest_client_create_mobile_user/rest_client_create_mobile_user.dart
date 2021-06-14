@@ -33,6 +33,9 @@ class RestClientCreateMobileUser implements RestClient {
         statusCode: response.statusCode,
       );
     } on DioError catch (e) {
+      print('***********erro => ${e.requestOptions.data}*********');
+      print('***********erro => ${e.requestOptions.extra}*********');
+      print('***********erro => ${e.type.index}*********');
       throw RestClientException(
         error: e.error,
         message: e.response!.statusMessage,

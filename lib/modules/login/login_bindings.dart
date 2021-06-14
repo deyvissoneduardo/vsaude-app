@@ -8,10 +8,10 @@ import 'package:vsaude_getx/repository/login/login_repository_rest_client.dart';
 class LoginBindings implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<RestClient>(() => RestClientLogin());
+    // Get.lazyPut<RestClient>(() => RestClientLogin());
     Get.lazyPut<LoginRepositoryRestClient>(
         () => LoginRepositoryRestClient(restClient: Get.find()));
     Get.put(LoginController());
-    // Get.put(CreateMobileUserController());
+    Get.put(CreateMobileUserController());
   }
 }

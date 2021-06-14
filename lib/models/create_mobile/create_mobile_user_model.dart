@@ -8,7 +8,6 @@ class CreateMobileUserModel {
   String? password;
   String? phone;
 
-  // falta adc campos obrigatorios
   CreateMobileUserModel({
     this.mobileProjectId,
     this.tenantId,
