@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vsaude_getx/modules/create_mobile_user/create_mobile_user_controller.dart';
 
-import '../../register_user_controller.dart';
-
-class BtnRegisterUserWidget extends GetView<RegisterUserController> {
-  const BtnRegisterUserWidget({Key? key}) : super(key: key);
+class BtnCreateMobileWidget extends GetView<CreateMobileUserController> {
+  const BtnCreateMobileWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

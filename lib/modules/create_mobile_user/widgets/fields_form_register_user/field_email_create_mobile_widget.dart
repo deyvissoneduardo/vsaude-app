@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:get/state_manager.dart';
-import 'package:vsaude_getx/modules/register_user/register_user_controller.dart';
+import 'package:vsaude_getx/modules/create_mobile_user/create_mobile_user_controller.dart';
 
-class FieldSurNameRegisterUserWidget extends GetView<RegisterUserController> {
+class FieldEmailCreateMobileWidget extends GetView<CreateMobileUserController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller.controllerSurName,
-      keyboardType: TextInputType.name,
-      decoration: InputDecoration(hintText: 'Sobrenome'),
+      controller: controller.controllerEmailAddress,
+      keyboardType: TextInputType.emailAddress,
       validator: (value) {
         var validador = Validator(validators: [
           RequiredValidator(),
+          EmailValidator(),
         ]);
         return validador.validate(
           context: context,
@@ -20,6 +20,7 @@ class FieldSurNameRegisterUserWidget extends GetView<RegisterUserController> {
           value: value,
         );
       },
+      decoration: InputDecoration(hintText: 'Email'),
     );
   }
 }

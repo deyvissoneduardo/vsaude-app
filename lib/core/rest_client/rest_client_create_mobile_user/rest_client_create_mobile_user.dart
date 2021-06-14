@@ -3,16 +3,17 @@ import 'package:vsaude_getx/core/rest_client/rest_client.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client_exception.dart';
 import 'package:vsaude_getx/core/rest_client/rest_client_response.dart';
 
-class RestClientRegistgerUser implements RestClient {
+class RestClientCreateMobileUser implements RestClient {
   late Dio _dio;
 
   static final _baseOptions = BaseOptions(
     baseUrl: 'https://hml.vsaude.com.br/api/services/app/User',
   );
 
-  RestClientRegistgerUser() {
+  RestClientCreateMobileUser() {
     _dio = Dio(_baseOptions);
   }
+
   @override
   Future<RestClientResponse<T>> post<T>(String path,
       {Options? options,
@@ -32,6 +33,9 @@ class RestClientRegistgerUser implements RestClient {
         statusCode: response.statusCode,
       );
     } on DioError catch (e) {
+      print('***********erro => ${e.requestOptions.data}*********');
+      print('***********erro => ${e.requestOptions.extra}*********');
+      print('***********erro => ${e.type.index}*********');
       throw RestClientException(
         error: e.error,
         message: e.response!.statusMessage,
