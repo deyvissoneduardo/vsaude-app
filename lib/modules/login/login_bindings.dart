@@ -12,6 +12,6 @@ class LoginBindings implements Bindings {
     Get.lazyPut<LoginRepositoryRestClient>(
         () => LoginRepositoryRestClient(restClient: Get.find()));
     Get.put(LoginController());
-    Get.put(CreateMobileUserController());
+    // Get.put(CreateMobileUserController());
   }
 }
