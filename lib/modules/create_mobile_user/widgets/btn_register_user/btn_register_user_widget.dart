@@ -10,7 +10,6 @@ class BtnCreateMobileWidget extends GetView<CreateMobileUserController> {
     return ElevatedButton(
         onPressed: () => controller.formIsValid(),
         child: Container(
-          padding: EdgeInsets.all(10),
           alignment: Alignment.center,
           child: Text('Cadastrar', style: Theme.of(context).textTheme.button),
         ));

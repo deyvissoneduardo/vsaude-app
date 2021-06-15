@@ -29,7 +29,7 @@ class CreateMobileUserPage extends GetView<CreateMobileUserController> {
                     FieldPhoneCreateMobileWidget(),
                     // senha
                     FielPasswordCreateMobileWidget(),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     BtnCreateMobileWidget()
                   ],
                 )),

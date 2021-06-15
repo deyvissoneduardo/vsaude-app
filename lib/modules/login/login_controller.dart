@@ -8,15 +8,6 @@ class LoginController extends GetxController {
   TextEditingController controllerPassword = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
 
-  // @override
-  // Future<void> onInit() async {
-  //   await singIn();
-  //   controllerEmail.obs;
-  //   controllerPassword.obs;
-  //   formKey.obs;
-  //   super.onInit();
-  // }
-
   @override
   onInit() {
     controllerEmail.obs;

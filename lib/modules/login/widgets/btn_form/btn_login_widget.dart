@@ -20,7 +20,7 @@ class BtnLoginWidget extends GetView<LoginController> {
           alignment: Alignment.center,
           child: Text(
             'Logar',
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.button,
           ),
         ),
       ),
