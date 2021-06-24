@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/rest_client/exception/repository_exception.dart';
 import 'package:vsaude_getx/app/core/rest_client/rest_client.dart';
-import 'package:vsaude_getx/app/models/login/login_model.dart';
 
 import 'login_repository.dart';
 

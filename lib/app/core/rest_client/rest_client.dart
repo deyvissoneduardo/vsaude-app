@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:vsaude_getx/app/core/rest_client/rest_client_response.dart';
+
+import 'response/rest_client_response.dart';
 
 abstract class RestClient {
   Future<RestClientResponse<T>> post<T>(

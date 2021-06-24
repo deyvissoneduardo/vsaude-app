@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:vsaude_getx/app/models/create_mobile/create_mobile_user_model.dart';
-import 'package:vsaude_getx/app/repository/create_mobile_user/create_mobile_user_repository_rest_client.dart';
+import 'package:vsaude_getx/app/core/models/create_mobile/create_mobile_user_model.dart';
+import 'package:vsaude_getx/app/core/repository/create_mobile_user/create_mobile_user_repository_rest_client.dart';
 
 class CreateMobileUserController extends GetxController {
   TextEditingController controllerFullName =

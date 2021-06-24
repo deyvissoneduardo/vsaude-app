@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:vsaude_getx/app/core/models/create_mobile/create_mobile_user_model.dart';
 import 'package:vsaude_getx/app/core/rest_client/exception/repository_exception.dart';
 import 'package:vsaude_getx/app/core/rest_client/rest_client.dart';
-import 'package:vsaude_getx/app/models/create_mobile/create_mobile_user_model.dart';
 
 import 'create_mobile_user_repository.dart';
 

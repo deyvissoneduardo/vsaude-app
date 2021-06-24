@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/constantes/constants.dart';
-import 'package:vsaude_getx/app/models/login/login_model.dart';
-import 'package:vsaude_getx/app/repository/login/login_repository_rest_client.dart';
+import 'package:vsaude_getx/app/core/models/login/login_model.dart';
+import 'package:vsaude_getx/app/core/repository/login/login_repository_rest_client.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail = TextEditingController();

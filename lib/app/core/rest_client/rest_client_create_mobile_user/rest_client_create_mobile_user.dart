@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
 import '../rest_client.dart';
-import '../rest_client_exception.dart';
-import '../rest_client_response.dart';
+import '../exception/rest_client_exception.dart';
+import '../response/rest_client_response.dart';
 
 class RestClientCreateMobileUser implements RestClient {
   late Dio _dio;
