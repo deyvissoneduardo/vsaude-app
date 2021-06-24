@@ -15,7 +15,7 @@ class LoginRepositoryRestClient implements LoginRepository {
   Future<LoginModel> singInApp(LoginModel loginModel) async {
     try {
       final result = await _restClient.post<LoginModel>(
-        '/AuthenticateMobileUser',
+        '/TokenAuth/AuthenticateMobileUser',
         data: loginModel.toJson(),
       );
       print('******${result.data}**********');

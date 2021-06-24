@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/constantes/constants.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/repository/login/login_repository_rest_client.dart';
+import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail = TextEditingController();
@@ -53,10 +55,10 @@ class LoginController extends GetxController {
         password: controllerPassword.text,
       ),
     );
-    Get.offAndToNamed('/home');
+    Get.offNamedUntil(AppRoutes.HOME, (route) => false);
   }
 
   nextRegisterUser() {
-    Get.toNamed('/register_user');
+    Get.toNamed(AppRoutes.CREATE_MOBILE);
   }
 }

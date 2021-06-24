@@ -4,18 +4,15 @@ import 'package:vsaude_getx/app/core/rest_client/exception/rest_client_exception
 import '../rest_client.dart';
 import '../response/rest_client_response.dart';
 
-class RestClientLogin implements RestClient {
+class RestClientService implements RestClient {
   late Dio _dio;
 
   static final _baseOptions = BaseOptions(
-    baseUrl: 'https://api.vsaude.com.br/api/TokenAuth',
+    baseUrl: 'https://api.vsaude.com.br/api',
   );
 
-  RestClientLogin() {
+  RestClientService() {
     _dio = Dio(_baseOptions);
-    // _dio.interceptors.addAll([
-    //   LoginInterceptor(),
-    // ]);
   }
 
   @override

@@ -15,7 +15,7 @@ class CreateMobileUserRepositoryRestClient
   Future<void> registerUser(CreateMobileUserModel createMobileUserModel) async {
     try {
       final result = await _restClient.post<CreateMobileUserModel>(
-        '/CreateMobileUser',
+        'services/app/User/CreateMobileUser',
         data: createMobileUserModel.toJson(),
       );
       print('********${result.data}*********');
