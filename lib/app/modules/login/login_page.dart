@@ -27,6 +27,7 @@ class LoginPage extends GetView<LoginController> {
                     // senha
                     PasswordLoginWidget(),
                     // btn logar
+                    SizedBox(height: 10),
                     BtnLoginWidget(),
                     SizedBox(height: 10),
                     BtnLoginRegisterWidget()
