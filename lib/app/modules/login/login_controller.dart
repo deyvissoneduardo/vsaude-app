@@ -1,12 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/constantes/constants.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/repository/login/login_repository_rest_client.dart';
+import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
+  TextEditingController controllerEmail =
+      TextEditingController(text: 'lbadias@gmail.com');
+  TextEditingController controllerPassword =
+      TextEditingController(text: '123qwe');
   GlobalKey<FormState> formKey = GlobalKey();
 
   @override
@@ -19,6 +23,7 @@ class LoginController extends GetxController {
 
   // valida dados do login
   validForm() {
+    print('clicou no botao');
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       emailIsValid();
@@ -29,7 +34,12 @@ class LoginController extends GetxController {
 
   bool emailIsValid() {
     if (!controllerEmail.text.contains('@')) {
-      print('emial invalido');
+      Get.dialog(AlertDialog(
+          title: Text('Email'),
+          content: Text('Email invalido'),
+          actions: [
+            TextButton(onPressed: () => Get.back(), child: Text('OK'))
+          ]));
       return false;
     }
     return true;
@@ -37,7 +47,12 @@ class LoginController extends GetxController {
 
   bool passwordIsValid() {
     if (controllerPassword.text.isEmpty) {
-      print('senha invalida');
+      Get.dialog(AlertDialog(
+          title: Text('Senha'),
+          content: Text('Senha vazia'),
+          actions: [
+            TextButton(onPressed: () => Get.back(), child: Text('OK'))
+          ]));
       return false;
     }
     return true;
@@ -45,6 +60,7 @@ class LoginController extends GetxController {
 
   // funcao de login
   Future<void> singIn() async {
+    print('chamou aqui');
     LoginRepositoryRestClient repository = Get.find();
     await repository.singInApp(
       LoginModel(
@@ -53,10 +69,11 @@ class LoginController extends GetxController {
         password: controllerPassword.text,
       ),
     );
-    Get.offAndToNamed('/home');
+    print('chamou aqui 2');
+    Get.offNamedUntil(AppRoutes.HOME, (route) => false);
   }
 
   nextRegisterUser() {
-    Get.toNamed('/register_user');
+    Get.toNamed(AppRoutes.CREATE_MOBILE);
   }
 }

@@ -8,6 +8,7 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('HomePage'),
+        centerTitle: true,
       ),
       body: Container(
         alignment: Alignment.center,

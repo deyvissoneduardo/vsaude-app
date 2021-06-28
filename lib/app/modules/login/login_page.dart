@@ -11,24 +11,28 @@ class LoginPage extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
-            alignment: Alignment.center,
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // email
-                  EmailLoginWidget(),
-                  // senha
-                  PasswordLoginWidget(),
-                  // btn logar
-                  BtnLoginWidget(),
-                  SizedBox(height: 10),
-                  BtnLoginRegisterWidget()
-                ],
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+              alignment: Alignment.center,
+              child: Form(
+                key: controller.formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // email
+                    EmailLoginWidget(),
+                    // senha
+                    PasswordLoginWidget(),
+                    // btn logar
+                    SizedBox(height: 10),
+                    BtnLoginWidget(),
+                    SizedBox(height: 10),
+                    BtnLoginRegisterWidget()
+                  ],
+                ),
               ),
             ),
           ),

@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 
 import '../../login_controller.dart';
 
-class BtnLoginWidget extends GetView<LoginController> {
+class BtnLoginWidget extends StatelessWidget {
   const BtnLoginWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: ElevatedButton(
-        onPressed: () => controller.validForm(),
+    return GetBuilder<LoginController>(
+      init: LoginController(),
+      builder: (_) => ElevatedButton(
+        onPressed: _.singIn,
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 40,

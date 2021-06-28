@@ -12,6 +12,10 @@ class CreateMobileUserPage extends GetView<CreateMobileUserController> {
         appBar: AppBar(
           centerTitle: true,
           title: Text('Cadastro'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.white),
+            onPressed: () => Get.back(),
+          ),
         ),
         body: SingleChildScrollView(
           child: Container(
