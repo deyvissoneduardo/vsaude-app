@@ -60,7 +60,6 @@ class LoginController extends GetxController {
 
   // funcao de login
   Future<void> singIn() async {
-    print('chamou aqui');
     LoginRepositoryRestClient repository = Get.find();
     await repository.singInApp(
       LoginModel(
@@ -69,7 +68,6 @@ class LoginController extends GetxController {
         password: controllerPassword.text,
       ),
     );
-    print('chamou aqui 2');
     Get.offNamedUntil(AppRoutes.HOME, (route) => false);
   }
 
