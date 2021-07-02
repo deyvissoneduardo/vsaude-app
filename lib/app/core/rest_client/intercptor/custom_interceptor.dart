@@ -22,7 +22,10 @@ class CustomInterceptor implements Interceptor {
     if (error.response?.data['error']['message'] == 'InvalidPassword') {
       Get.dialog(AlertDialog(
         title: Text('Senha Incorreta'),
-        actions: [TextButton(onPressed: () => Get.back(), child: Text('OK'))],
+        actions: [
+          TextButton(onPressed: () => Get.back(), child: Text('OK')),
+          TextButton(onPressed: () => Get.back(), child: Text('Resetar Senha')),
+        ],
       ));
     }
 
@@ -30,7 +33,9 @@ class CustomInterceptor implements Interceptor {
         'InvalidUserNameOrEmailAddress') {
       Get.dialog(AlertDialog(
         title: Text('Email Invalido'),
-        actions: [TextButton(onPressed: () => Get.back(), child: Text('OK'))],
+        actions: [
+          TextButton(onPressed: () => Get.back(), child: Text('OK')),
+        ],
       ));
     }
   }
