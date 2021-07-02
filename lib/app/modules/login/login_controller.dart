@@ -8,9 +8,9 @@ import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail =
-      TextEditingController(text: 'lbadiaasas@gmail.com');
+      TextEditingController(text: 'lbadias@gmail.com');
   TextEditingController controllerPassword =
-      TextEditingController(text: '123qwe');
+      TextEditingController(text: '123qwe1');
   GlobalKey<FormState> formKey = GlobalKey();
 
   @override

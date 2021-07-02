@@ -5,6 +5,8 @@ import 'package:vsaude_getx/app/modules/home/home_bindings.dart';
 import 'package:vsaude_getx/app/modules/home/home_page.dart';
 import 'package:vsaude_getx/app/modules/login/login_bindings.dart';
 import 'package:vsaude_getx/app/modules/login/login_page.dart';
+import 'package:vsaude_getx/app/modules/start_reset_password/start_reset_password_bindings.dart';
+import 'package:vsaude_getx/app/modules/start_reset_password/start_reset_password_page.dart';
 
 import 'app_routes.dart';
 
@@ -24,6 +26,11 @@ class AppPages {
       name: AppRoutes.CREATE_MOBILE,
       page: () => CreateMobileUserPage(),
       binding: CreateMobileUserBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.RESET_PASSWORD,
+      page: () => StartResetPasswordPage(),
+      binding: StartResetPasswordBindings(),
     ),
   ];
 }
