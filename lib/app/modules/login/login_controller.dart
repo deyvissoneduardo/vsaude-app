@@ -4,16 +4,13 @@ import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/constantes/constants.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/repository/login/login_repository_rest_client.dart';
-import 'package:vsaude_getx/app/core/rest_client/exception/custom_dio_error.dart';
-import 'package:vsaude_getx/app/core/rest_client/exception/rest_client_exception.dart';
-import 'package:vsaude_getx/app/core/rest_client/intercptor/custom_interceptor.dart';
 import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail =
-      TextEditingController(text: 'lbadiaasas@gmail.com');
+      TextEditingController(text: 'lbadias@gmail.com');
   TextEditingController controllerPassword =
-      TextEditingController(text: '123qwe');
+      TextEditingController(text: '123qwe1');
   GlobalKey<FormState> formKey = GlobalKey();
 
   @override
@@ -63,26 +60,15 @@ class LoginController extends GetxController {
 
   // funcao de login
   Future<void> singIn() async {
-    try {
-      LoginRepositoryRestClient repository = Get.find();
-      await repository.singInApp(
-        LoginModel(
-          mobileProjectId: Constants.PROJECT_ID,
-          userNameOrEmailAddress: controllerEmail.text,
-          password: controllerPassword.text,
-        ),
-      );
-      Get.offNamedUntil(AppRoutes.HOME, (route) => false);
-    } on CustomDioError catch (e) {
-      print(e.response?.statusCode);
-      print(":::${e.response?.data}:::");
-      print(":::${e.response?.data['error']['message']}:::");
-      CustomInterceptor.error(e);
-      throw RestClientException(
-        message: e.response?.statusMessage,
-        statusCode: e.response?.statusCode,
-      );
-    }
+    LoginRepositoryRestClient repository = Get.find();
+    await repository.singInApp(
+      LoginModel(
+        mobileProjectId: Constants.PROJECT_ID,
+        userNameOrEmailAddress: controllerEmail.text,
+        password: controllerPassword.text,
+      ),
+    );
+    Get.offNamedUntil(AppRoutes.HOME, (route) => false);
   }
 
   nextRegisterUser() {

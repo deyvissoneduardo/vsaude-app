@@ -1,17 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:vsaude_getx/app/core/constantes/constants.dart';
 import 'package:vsaude_getx/app/core/models/create_mobile/create_mobile_user_model.dart';
 import 'package:vsaude_getx/app/core/repository/create_mobile_user/create_mobile_user_repository_rest_client.dart';
 
 class CreateMobileUserController extends GetxController {
-  TextEditingController controllerFullName =
-      TextEditingController(text: 'doutor');
-  TextEditingController controllerEmailAddress =
-      TextEditingController(text: 'doutor@gmail.com');
-  TextEditingController controllerPassword =
-      TextEditingController(text: '123456');
-  TextEditingController controllerPhone =
-      TextEditingController(text: '61983307534');
+  TextEditingController controllerFullName = TextEditingController();
+  TextEditingController controllerEmailAddress = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
+  TextEditingController controllerPhone = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -37,8 +34,8 @@ class CreateMobileUserController extends GetxController {
   Future<void> regiterUserApp() async {
     CreateMobileUserRepositoryRestClient repositoryRestClient = Get.find();
     await repositoryRestClient.registerUser(CreateMobileUserModel(
-      mobileProjectId: 'fcc80c1d-6040-4e57-a23c-abb301653616',
-      tenantId: '2',
+      mobileProjectId: Constants.PROJECT_ID,
+      tenantId: Constants.TENANT_ID,
       fullName: controllerFullName.text,
       emailAddress: controllerEmailAddress.text,
       phone: controllerPhone.text,

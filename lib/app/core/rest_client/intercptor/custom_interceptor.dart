@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class CustomInterceptor implements Interceptor {
   @override
@@ -23,8 +24,15 @@ class CustomInterceptor implements Interceptor {
       Get.dialog(AlertDialog(
         title: Text('Senha Incorreta'),
         actions: [
-          TextButton(onPressed: () => Get.back(), child: Text('OK')),
-          TextButton(onPressed: () => Get.back(), child: Text('Resetar Senha')),
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('OK'),
+          ),
+          TextButton(
+            onPressed: () => Get.offAndToNamed(AppRoutes.RESET_PASSWORD,
+                arguments: error.response?.data),
+            child: Text('Resetar Senha'),
+          ),
         ],
       ));
     }
@@ -34,7 +42,10 @@ class CustomInterceptor implements Interceptor {
       Get.dialog(AlertDialog(
         title: Text('Email Invalido'),
         actions: [
-          TextButton(onPressed: () => Get.back(), child: Text('OK')),
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('OK'),
+          ),
         ],
       ));
     }

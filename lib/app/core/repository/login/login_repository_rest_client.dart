@@ -20,6 +20,7 @@ class LoginRepositoryRestClient implements LoginRepository {
       );
       return LoginModel.fromMap(loginModel.toMap());
     } on DioError catch (e) {
+      // _restClient.dio.interceptors.add(CustomInterceptor.error(e));
       return e.error;
     }
   }
