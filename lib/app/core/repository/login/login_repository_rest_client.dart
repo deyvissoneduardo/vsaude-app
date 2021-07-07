@@ -13,15 +13,14 @@ class LoginRepositoryRestClient implements LoginRepository {
   @override
   Future<LoginModel> singInApp(LoginModel loginModel) async {
     try {
-      print('repo json:::::${loginModel.toJson()}::::');
       await _restClient.post<LoginModel>(
         '/TokenAuth/AuthenticateMobileUser',
         data: loginModel.toJson(),
       );
       return LoginModel.fromMap(loginModel.toMap());
     } on DioError catch (e) {
-      // _restClient.dio.interceptors.add(CustomInterceptor.error(e));
-      return e.error;
+      print('dento do repo');
+      return e.response!.data;
     }
   }
 }

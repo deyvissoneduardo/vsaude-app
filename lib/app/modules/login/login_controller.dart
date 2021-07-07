@@ -8,7 +8,7 @@ import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail =
-      TextEditingController(text: 'lbadias@gmail.com');
+      TextEditingController(text: 'deyvissoneduardo22@gmail.com');
   TextEditingController controllerPassword =
       TextEditingController(text: '123qwe1');
   GlobalKey<FormState> formKey = GlobalKey();
@@ -71,7 +71,5 @@ class LoginController extends GetxController {
     Get.offNamedUntil(AppRoutes.HOME, (route) => false);
   }
 
-  nextRegisterUser() {
-    Get.toNamed(AppRoutes.CREATE_MOBILE);
-  }
+  nextRegisterUser() => Get.toNamed(AppRoutes.CREATE_MOBILE);
 }
