@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:vsaude_getx/app/modules/login/widgets/btn_form/btn_login_reset_password.dart';
 import './login_controller.dart';
 import 'widgets/btn_form/btn_login_register_widget.dart';
 import 'widgets/btn_form/btn_login_widget.dart';
@@ -30,7 +31,13 @@ class LoginPage extends GetView<LoginController> {
                     SizedBox(height: 10),
                     BtnLoginWidget(),
                     SizedBox(height: 10),
-                    BtnLoginRegisterWidget()
+                    Row(
+                      children: [
+                        BtnLoginRegisterWidget(),
+                        const SizedBox(height: 5),
+                        BtnLoginResetPassword()
+                      ],
+                    )
                   ],
                 ),
               ),
