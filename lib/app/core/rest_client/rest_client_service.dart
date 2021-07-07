@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'intercptor/custom_interceptor.dart';
 import 'rest_client.dart';
 import 'response/rest_client_response.dart';
 
 class RestClientService implements RestClient {
   late Dio _dio;
   static final _baseOptions = BaseOptions(
-    baseUrl: 'https://api.vsaude.com.br/api',
+    baseUrl: 'https://hml.vsaude.com.br/api',
   );
 
   RestClientService() {
@@ -35,8 +36,37 @@ class RestClientService implements RestClient {
         message: response.statusMessage,
       );
     } on DioError catch (e) {
-      dio.interceptors.add(CustomInterceptor.error(e));
+      print('dento do service');
+      error(e);
       return e.error;
+    }
+  }
+
+  static error(DioError error) {
+    if (error.response?.data['error']['message'] == 'InvalidPassword') {
+      Get.dialog(AlertDialog(
+        title: Text('Senha Incorreta'),
+        content: Text('${error.response!.data}'),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('OK'),
+          ),
+        ],
+      ));
+    }
+
+    if (error.response?.data['error']['message'] ==
+        'InvalidUserNameOrEmailAddress') {
+      Get.dialog(AlertDialog(
+        title: Text('Email Invalido'),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('OK'),
+          ),
+        ],
+      ));
     }
   }
 }
