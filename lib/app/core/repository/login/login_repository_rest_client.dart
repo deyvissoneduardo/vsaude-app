@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
+import 'package:vsaude_getx/app/core/models/reset_password/reset_password_model.dart';
 import 'package:vsaude_getx/app/core/rest_client/rest_client_service.dart';
 import 'login_repository.dart';
 
@@ -19,8 +20,21 @@ class LoginRepositoryRestClient implements LoginRepository {
       );
       return LoginModel.fromMap(loginModel.toMap());
     } on DioError catch (e) {
-      print('dento do repo');
       return e.response!.data;
+    }
+  }
+
+  @override
+  Future<void> resetPassword(ResetPasswordModel resetPasswordModel) async {
+    try {
+      print('::::json ${resetPasswordModel.toJson()}:::::');
+      await _restClient.post<ResetPasswordModel>(
+        '/services/app/User/StartResetPassword',
+        data: resetPasswordModel.toJson(),
+      );
+    } on Exception catch (e) {
+      print(e);
+      print('caiu aqui');
     }
   }
 }

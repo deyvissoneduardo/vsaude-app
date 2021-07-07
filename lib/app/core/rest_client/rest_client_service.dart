@@ -8,7 +8,7 @@ import 'response/rest_client_response.dart';
 class RestClientService implements RestClient {
   late Dio _dio;
   static final _baseOptions = BaseOptions(
-    baseUrl: 'https://hml.vsaude.com.br/api',
+    baseUrl: 'https://api.vsaude.com.br/api',
   );
 
   RestClientService() {
@@ -36,7 +36,6 @@ class RestClientService implements RestClient {
         message: response.statusMessage,
       );
     } on DioError catch (e) {
-      print('dento do service');
       error(e);
       return e.error;
     }
@@ -46,7 +45,6 @@ class RestClientService implements RestClient {
     if (error.response?.data['error']['message'] == 'InvalidPassword') {
       Get.dialog(AlertDialog(
         title: Text('Senha Incorreta'),
-        content: Text('${error.response!.data}'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),

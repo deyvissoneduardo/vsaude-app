@@ -3,15 +3,16 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/constantes/constants.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
+import 'package:vsaude_getx/app/core/models/reset_password/reset_password_model.dart';
 import 'package:vsaude_getx/app/core/repository/login/login_repository_rest_client.dart';
 import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail =
       TextEditingController(text: 'deyvissoneduardo22@gmail.com');
-  TextEditingController controllerPassword =
-      TextEditingController(text: '123qwe1');
+  TextEditingController controllerPassword = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
+  LoginRepositoryRestClient repository = Get.find();
 
   @override
   onInit() {
@@ -60,7 +61,6 @@ class LoginController extends GetxController {
 
   // funcao de login
   Future<void> singIn() async {
-    LoginRepositoryRestClient repository = Get.find();
     await repository.singInApp(
       LoginModel(
         mobileProjectId: Constants.PROJECT_ID,
@@ -72,4 +72,12 @@ class LoginController extends GetxController {
   }
 
   nextRegisterUser() => Get.toNamed(AppRoutes.CREATE_MOBILE);
+
+  Future<void> resetPasword() async {
+    await repository.resetPassword(ResetPasswordModel(
+      email: controllerEmail.text,
+      mobileProjectId: Constants.PROJECT_ID,
+    ));
+    Get.offNamedUntil(AppRoutes.RESET_PASSWORD, (route) => false);
+  }
 }
