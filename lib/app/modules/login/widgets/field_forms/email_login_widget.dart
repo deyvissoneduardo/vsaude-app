@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_validation/form_validation.dart';
 import 'package:get/get.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../login_controller.dart';
 
@@ -12,18 +12,14 @@ class EmailLoginWidget extends GetView<LoginController> {
     return TextFormField(
       controller: controller.controllerEmail,
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
-        var validador = Validator(validators: [
-          RequiredValidator(),
-          EmailValidator(),
-        ]);
-        return validador.validate(
-          context: context,
-          label: 'Campo Obrigatorio',
-          value: value,
-        );
-      },
-      decoration: InputDecoration(hintText: 'Email'),
+      validator: Validatorless.multiple([
+        Validatorless.required('Campo Obrigatorio'),
+        Validatorless.email('Email Invalido')
+      ]),
+      decoration: InputDecoration(
+        hintText: 'email@email.com',
+        labelText: 'Email',
+      ),
     );
   }
 }

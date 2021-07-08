@@ -15,13 +15,12 @@ dependencies:
   # api
   dio: ^4.0.0
   get: ^4.1.4
-  retrofit: ^2.0.0
   meta: ^1.3.0
   json_annotation: ^4.0.1
 
-  # fields
-  brasil_fields: ^1.1.3
-  form_validation: ^2.0.0
+  #utils
+  validatorless: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

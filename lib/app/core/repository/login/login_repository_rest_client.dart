@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/models/reset_password/reset_password_model.dart';
+import 'package:vsaude_getx/app/core/rest_client/exception/rest_client_exception.dart';
 import 'package:vsaude_getx/app/core/rest_client/rest_client_service.dart';
 import 'login_repository.dart';
 
@@ -19,22 +22,47 @@ class LoginRepositoryRestClient implements LoginRepository {
         data: loginModel.toJson(),
       );
       return LoginModel.fromMap(loginModel.toMap());
-    } on DioError catch (e) {
-      return e.response!.data;
+    } on RestClientException catch (e) {
+      print('dentro do repo login');
+      print('message ${e.message}');
+      print('code ${e.statusCode}');
+      print(e.error);
+      return e.error;
     }
   }
 
   @override
   Future<void> resetPassword(ResetPasswordModel resetPasswordModel) async {
-    try {
-      print('::::json ${resetPasswordModel.toJson()}:::::');
-      await _restClient.post<ResetPasswordModel>(
-        '/services/app/User/StartResetPassword',
-        data: resetPasswordModel.toJson(),
-      );
-    } on Exception catch (e) {
-      print(e);
-      print('caiu aqui');
+    await _restClient.post<ResetPasswordModel>(
+      '/services/app/User/StartResetPassword',
+      data: resetPasswordModel.toJson(),
+    );
+  }
+
+  error(DioError error) {
+    if (error.response?.data['error']['message'] == 'InvalidPassword') {
+      Get.dialog(AlertDialog(
+        title: Text('Senha Incorreta'),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('OK'),
+          ),
+        ],
+      ));
+    }
+
+    if (error.response?.data['error']['message'] ==
+        'InvalidUserNameOrEmailAddress') {
+      Get.dialog(AlertDialog(
+        title: Text('Email Invalido'),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('OK'),
+          ),
+        ],
+      ));
     }
   }
 }

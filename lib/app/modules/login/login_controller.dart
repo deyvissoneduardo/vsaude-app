@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -9,8 +10,9 @@ import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
   TextEditingController controllerEmail =
-      TextEditingController(text: 'deyvissoneduardo22@gmail.com');
-  TextEditingController controllerPassword = TextEditingController();
+      TextEditingController(text: 'lbadias@gmail.com');
+  TextEditingController controllerPassword =
+      TextEditingController(text: '123456');
   GlobalKey<FormState> formKey = GlobalKey();
   LoginRepositoryRestClient repository = Get.find();
 
@@ -24,7 +26,6 @@ class LoginController extends GetxController {
 
   // valida dados do login
   validForm() {
-    print('clicou no botao');
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       emailIsValid();
@@ -61,19 +62,26 @@ class LoginController extends GetxController {
 
   // funcao de login
   Future<void> singIn() async {
-    await repository.singInApp(
-      LoginModel(
-        mobileProjectId: Constants.PROJECT_ID,
-        userNameOrEmailAddress: controllerEmail.text,
-        password: controllerPassword.text,
-      ),
-    );
-    Get.offNamedUntil(AppRoutes.HOME, (route) => false);
+    try {
+      await repository.singInApp(
+        LoginModel(
+          mobileProjectId: Constants.PROJECT_ID,
+          userNameOrEmailAddress: controllerEmail.text,
+          password: controllerPassword.text,
+        ),
+      );
+      Get.offNamedUntil(AppRoutes.HOME, (route) => false);
+    } on DioError catch (e) {
+      repository.error(e);
+      return e.error;
+    }
   }
 
   nextRegisterUser() => Get.toNamed(AppRoutes.CREATE_MOBILE);
 
   Future<void> resetPasword() async {
+    print('btn de reseta');
+    emailIsValid();
     await repository.resetPassword(ResetPasswordModel(
       email: controllerEmail.text,
       mobileProjectId: Constants.PROJECT_ID,

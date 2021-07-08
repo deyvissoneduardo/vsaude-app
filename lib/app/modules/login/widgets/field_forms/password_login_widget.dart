@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_validation/form_validation.dart';
 import 'package:get/get.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../login_controller.dart';
 
@@ -11,18 +11,11 @@ class PasswordLoginWidget extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller.controllerPassword,
-      validator: (value) {
-        var validador = Validator(validators: [
-          RequiredValidator(),
-          MinLengthValidator(length: 2),
-        ]);
-        return validador.validate(
-          context: context,
-          label: 'Campo Obrigatorio',
-          value: value,
-        );
-      },
-      decoration: InputDecoration(hintText: 'Senha'),
+      validator: Validatorless.required('Campo Obrigatorio'),
+      decoration: InputDecoration(
+        labelText: 'Senha',
+        hintText: '123456',
+      ),
     );
   }
 }
