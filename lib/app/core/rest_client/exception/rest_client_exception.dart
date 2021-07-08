@@ -4,8 +4,8 @@ class RestClientException implements Exception {
   dynamic error;
 
   RestClientException({
-    message,
-    statusCode,
-    error,
+    this.message,
+    this.statusCode,
+    this.error,
   });
 }

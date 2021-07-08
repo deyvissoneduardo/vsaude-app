@@ -11,7 +11,7 @@ class BtnLoginWidget extends StatelessWidget {
     return GetBuilder<LoginController>(
       init: LoginController(),
       builder: (_) => ElevatedButton(
-        onPressed: _.singIn,
+        onPressed: _.validForm,
         child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 40,
