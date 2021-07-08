@@ -14,7 +14,10 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
             alignment: Alignment.center,
             child: ListView(
               children: [
+                Text(
+                    'email => ${controller.loginController.controllerEmail.text}'),
                 TextFormField(
+                  controller: controller.controllerToken,
                   decoration: InputDecoration(
                     labelText: 'Token',
                     hintText: 'Insira o Token',
@@ -22,8 +25,8 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
                 ),
                 const SizedBox(height: 8),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: Text('OK'),
+                  onPressed: () => controller.validateCodeResetPassword(),
+                  child: Text('Token'),
                 )
               ],
             ),

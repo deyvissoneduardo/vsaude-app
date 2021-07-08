@@ -8,6 +8,4 @@ class RestClientResponse<T> {
     statusCode,
     message,
   });
-
-  T? get token => data;
 }
