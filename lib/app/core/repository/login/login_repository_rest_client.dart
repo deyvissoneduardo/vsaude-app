@@ -5,6 +5,7 @@ import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/models/reset_password/reset_password_model.dart';
 import 'package:vsaude_getx/app/core/rest_client/exception/rest_client_exception.dart';
 import 'package:vsaude_getx/app/core/rest_client/rest_client_service.dart';
+import 'package:vsaude_getx/app/routes/app_routes.dart';
 import 'login_repository.dart';
 
 class LoginRepositoryRestClient implements LoginRepository {
@@ -23,9 +24,6 @@ class LoginRepositoryRestClient implements LoginRepository {
       );
       return LoginModel.fromMap(loginModel.toMap());
     } on RestClientException catch (e) {
-      print('dentro do repo login');
-      print('message ${e.message}');
-      print('code ${e.statusCode}');
       print(e.error);
       return e.error;
     }
@@ -47,6 +45,10 @@ class LoginRepositoryRestClient implements LoginRepository {
           TextButton(
             onPressed: () => Get.back(),
             child: Text('OK'),
+          ),
+          TextButton(
+            onPressed: () => Get.offAndToNamed(AppRoutes.RESET_PASSWORD),
+            child: Text('Reseta Senha'),
           ),
         ],
       ));

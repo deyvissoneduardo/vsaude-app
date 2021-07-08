@@ -8,6 +8,7 @@ import 'package:vsaude_getx/app/routes/app_pages.dart';
 void main() {
   runApp(GetMaterialApp(
     home: LoginPage(),
+    debugShowCheckedModeBanner: false,
     initialBinding: LoginBindings(),
     getPages: AppPages.pages,
   ));

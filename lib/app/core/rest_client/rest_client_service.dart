@@ -29,14 +29,12 @@ class RestClientService implements RestClient {
         queryParameters: queryParameters,
         options: Options(headers: headers),
       );
-      print('::::TOKEN => ${response.data['result']['token']}::::::::');
       return RestClientResponse(
         data: response.data,
         statusCode: response.statusCode,
         message: response.statusMessage,
       );
     } on RestClientException catch (e) {
-      print(e.error);
       return e.error;
     }
   }
