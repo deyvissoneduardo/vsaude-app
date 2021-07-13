@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:vsaude_getx/app/modules/complete_reset_password/complete_reset_password_bindings.dart';
+import 'package:vsaude_getx/app/modules/complete_reset_password/complete_reset_password_page.dart';
 import 'package:vsaude_getx/app/modules/create_mobile_user/create_mobile_user_bindings.dart';
 import 'package:vsaude_getx/app/modules/create_mobile_user/create_mobile_user_page.dart';
 import 'package:vsaude_getx/app/modules/home/home_bindings.dart';
@@ -31,6 +33,11 @@ class AppPages {
       name: AppRoutes.RESET_PASSWORD,
       page: () => ResetPasswordPage(),
       binding: ResetPasswordBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.COMPLETE_PASSWORD,
+      page: () => CompleteResetPasswordPage(),
+      binding: CompleteResetPasswordBindings(),
     ),
   ];
 }

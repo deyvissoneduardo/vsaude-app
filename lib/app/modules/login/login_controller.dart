@@ -9,10 +9,8 @@ import 'package:vsaude_getx/app/core/repository/login/login_repository_rest_clie
 import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
-  TextEditingController controllerEmail =
-      TextEditingController(text: 'deyvissoneduardo22@gmail.com');
-  TextEditingController controllerPassword =
-      TextEditingController(text: '123456');
+  TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
   LoginRepositoryRestClient repository = Get.find();
 

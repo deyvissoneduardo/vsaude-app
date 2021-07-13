@@ -18,6 +18,9 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
                     'email => ${controller.loginController.controllerEmail.text}'),
                 TextFormField(
                   controller: controller.controllerToken,
+                  autofocus: true,
+                  keyboardType: TextInputType.number,
+                  maxLength: 4,
                   decoration: InputDecoration(
                     labelText: 'Token',
                     hintText: 'Insira o Token',

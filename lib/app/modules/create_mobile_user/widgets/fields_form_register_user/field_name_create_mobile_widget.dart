@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../create_mobile_user_controller.dart';
 
@@ -11,6 +12,9 @@ class FieldFullNameCreateMobileWidget
       controller: controller.controllerFullName,
       keyboardType: TextInputType.name,
       decoration: InputDecoration(hintText: 'Nome'),
+      validator: Validatorless.multiple([
+        Validatorless.required('Campo Obrigatorio'),
+      ]),
     );
   }
 }

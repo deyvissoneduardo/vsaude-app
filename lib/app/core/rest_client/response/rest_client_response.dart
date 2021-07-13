@@ -4,8 +4,8 @@ class RestClientResponse<T> {
   String? message;
 
   RestClientResponse({
-    data,
-    statusCode,
-    message,
+    this.data,
+    this.statusCode,
+    this.message,
   });
 }
