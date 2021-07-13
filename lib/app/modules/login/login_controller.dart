@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -60,19 +59,14 @@ class LoginController extends GetxController {
 
   // funcao de login
   Future<void> singIn() async {
-    try {
-      await repository.singInApp(
-        LoginModel(
-          mobileProjectId: Constants.PROJECT_ID,
-          userNameOrEmailAddress: controllerEmail.text,
-          password: controllerPassword.text,
-        ),
-      );
-      Get.offNamedUntil(AppRoutes.HOME, (route) => false);
-    } on DioError catch (e) {
-      repository.error(e);
-      return e.error;
-    }
+    await repository.singInApp(
+      LoginModel(
+        mobileProjectId: Constants.PROJECT_ID,
+        userNameOrEmailAddress: controllerEmail.text,
+        password: controllerPassword.text,
+      ),
+    );
+    Get.offNamedUntil(AppRoutes.HOME, (route) => false);
   }
 
   nextRegisterUser() => Get.toNamed(AppRoutes.CREATE_MOBILE);

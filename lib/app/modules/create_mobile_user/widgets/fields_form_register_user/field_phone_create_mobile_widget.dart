@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/state_manager.dart';
+import 'package:validatorless/validatorless.dart';
 
 import '../../create_mobile_user_controller.dart';
 
@@ -14,6 +15,9 @@ class FieldPhoneCreateMobileWidget extends GetView<CreateMobileUserController> {
       ],
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(hintText: 'Telefone'),
+      validator: Validatorless.multiple([
+        Validatorless.required('Campo Obrigatorio'),
+      ]),
     );
   }
 }

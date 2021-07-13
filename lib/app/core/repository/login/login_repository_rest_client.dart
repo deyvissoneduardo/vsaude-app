@@ -24,6 +24,7 @@ class LoginRepositoryRestClient implements LoginRepository {
       return LoginModel.fromMap(loginModel.toMap());
     } on RestClientException catch (e) {
       print(e.error);
+      error(e.error);
       return e.error;
     }
   }

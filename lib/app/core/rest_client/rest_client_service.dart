@@ -7,7 +7,7 @@ import 'response/rest_client_response.dart';
 class RestClientService implements RestClient {
   late Dio _dio;
   static final _baseOptions = BaseOptions(
-    baseUrl: 'https://api.vsaude.com.br/api',
+    baseUrl: 'https://hml.vsaude.com.br/api',
   );
 
   RestClientService() {
