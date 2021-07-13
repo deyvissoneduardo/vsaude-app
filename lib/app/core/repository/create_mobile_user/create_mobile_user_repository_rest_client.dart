@@ -14,11 +14,10 @@ class CreateMobileUserRepositoryRestClient
   @override
   Future<void> registerUser(CreateMobileUserModel createMobileUserModel) async {
     try {
-      final result = await _restClient.post<CreateMobileUserModel>(
-        'services/app/User/CreateMobileUser',
+      await _restClient.post(
+        '/services/app/User/CreateMobileUser',
         data: createMobileUserModel.toJson(),
       );
-      print('********${result.data}*********');
     } on DioError catch (e, s) {
       print(e);
       print(s);
