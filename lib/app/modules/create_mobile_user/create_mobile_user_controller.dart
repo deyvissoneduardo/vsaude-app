@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/constantes/constants.dart';
 import 'package:vsaude_getx/app/core/models/create_mobile/create_mobile_user_model.dart';
 import 'package:vsaude_getx/app/core/repository/create_mobile_user/create_mobile_user_repository_rest_client.dart';
+import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class CreateMobileUserController extends GetxController {
   TextEditingController controllerFullName = TextEditingController();
@@ -14,7 +15,6 @@ class CreateMobileUserController extends GetxController {
 
   @override
   onInit() {
-    // adc observaveis na variavel
     controllerEmailAddress.obs;
     controllerPassword.obs;
     controllerFullName.obs;
@@ -22,6 +22,17 @@ class CreateMobileUserController extends GetxController {
 
     formKey.obs;
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    controllerEmailAddress.obs;
+    controllerPassword.obs;
+    controllerFullName.obs;
+    controllerPhone.obs;
+
+    formKey.obs;
+    super.dispose();
   }
 
   formIsValid() {
@@ -36,11 +47,11 @@ class CreateMobileUserController extends GetxController {
     await repositoryRestClient.registerUser(CreateMobileUserModel(
       mobileProjectId: Constants.PROJECT_ID,
       tenantId: Constants.TENANT_ID,
-      fullName: controllerFullName.text,
-      emailAddress: controllerEmailAddress.text,
-      phone: controllerPhone.text,
-      password: controllerPassword.text,
+      fullName: controllerFullName.text.trim(),
+      emailAddress: controllerEmailAddress.text.trim(),
+      phone: controllerPhone.text.trim(),
+      password: controllerPassword.text.trim(),
     ));
-    Get.offAndToNamed('/home');
+    Get.offAndToNamed(AppRoutes.HOME);
   }
 }
