@@ -17,14 +17,13 @@ class LoginRepositoryRestClient implements LoginRepository {
   @override
   Future<LoginModel> singInApp(LoginModel loginModel) async {
     try {
-      await _restClient.post<LoginModel>(
+      await _restClient.post(
         '/TokenAuth/AuthenticateMobileUser',
         data: loginModel.toJson(),
       );
       return LoginModel.fromMap(loginModel.toMap());
     } on RestClientException catch (e) {
       print(e.error);
-      error(e.error);
       return e.error;
     }
   }

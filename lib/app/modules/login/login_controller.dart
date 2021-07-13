@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -25,57 +26,38 @@ class LoginController extends GetxController {
   validForm() {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      emailIsValid();
-      passwordIsValid();
       singIn();
     }
   }
 
-  bool emailIsValid() {
-    if (!controllerEmail.text.contains('@')) {
-      Get.dialog(AlertDialog(
-          title: Text('Email'),
-          content: Text('Email invalido'),
-          actions: [
-            TextButton(onPressed: () => Get.back(), child: Text('OK'))
-          ]));
-      return false;
+  //valida email reseta senha
+  validEmailResetSenha() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      resetPasword();
     }
-    return true;
-  }
-
-  bool passwordIsValid() {
-    if (controllerPassword.text.isEmpty) {
-      Get.dialog(AlertDialog(
-          title: Text('Senha'),
-          content: Text('Senha vazia'),
-          actions: [
-            TextButton(onPressed: () => Get.back(), child: Text('OK'))
-          ]));
-      return false;
-    }
-    return true;
   }
 
   // funcao de login
   Future<void> singIn() async {
-    await repository.singInApp(
-      LoginModel(
+    try {
+      await repository.singInApp(LoginModel(
         mobileProjectId: Constants.PROJECT_ID,
         userNameOrEmailAddress: controllerEmail.text,
         password: controllerPassword.text,
-      ),
-    );
-    Get.offNamedUntil(AppRoutes.HOME, (route) => false);
+      ));
+      Get.offNamedUntil(AppRoutes.HOME, (route) => false);
+    } on DioError catch (e) {
+      repository.error(e);
+    }
   }
 
   nextRegisterUser() => Get.toNamed(AppRoutes.CREATE_MOBILE);
 
   Future<void> resetPasword() async {
-    print('btn de reseta');
-    emailIsValid();
+    String email = controllerEmail.text.trim();
     await repository.resetPassword(ResetPasswordModel(
-      email: controllerEmail.text,
+      email: email,
       mobileProjectId: Constants.PROJECT_ID,
     ));
     Get.offNamedUntil(

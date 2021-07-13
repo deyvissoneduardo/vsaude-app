@@ -23,7 +23,6 @@ class ValidadeResetPasswordRestClient
         '/services/app/User/ValidateResetPasswordCode',
         data: validadeResetPasswordModel.toJson(),
       );
-      print('result => ${response.data['result']}');
       erroToken(response);
     } on DioError catch (e) {
       print(e.response!.data);
@@ -33,7 +32,6 @@ class ValidadeResetPasswordRestClient
 
   Future<bool> erroToken(RestClientResponse response) async {
     if (response.data['result'] == false) {
-      print('=> ${response.data['result']}');
       await Get.dialog(AlertDialog(
         title: Text('Token Invalido'),
         actions: [
