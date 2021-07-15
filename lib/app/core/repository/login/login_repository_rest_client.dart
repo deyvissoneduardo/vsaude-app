@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/models/reset_password/reset_password_model.dart';
+import 'package:vsaude_getx/app/core/repository/login/login_result.dart';
 import 'package:vsaude_getx/app/core/rest_client/exception/rest_client_exception.dart';
 import 'package:vsaude_getx/app/core/rest_client/rest_client_service.dart';
 import 'login_repository.dart';
@@ -15,13 +16,13 @@ class LoginRepositoryRestClient implements LoginRepository {
   }) : _restClient = restClient;
 
   @override
-  Future<LoginModel> singInApp(LoginModel loginModel) async {
+  Future<LoginResult> singInApp(LoginModel loginModel) async {
     try {
-      await _restClient.post(
+      final result = await _restClient.post(
         '/TokenAuth/AuthenticateMobileUser',
         data: loginModel.toJson(),
       );
-      return LoginModel.fromMap(loginModel.toMap());
+      return LoginResult.fromMap(result.data['result']);
     } on RestClientException catch (e) {
       print(e.error);
       return e.error;
