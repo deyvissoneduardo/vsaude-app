@@ -8,7 +8,6 @@ import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class BottomPageController extends GetxController {
   RxInt tabIndex = 0.obs;
-  RxBool isAuthenticed = false.obs;
   int get index => tabIndex.value;
 
   late PageController pageController = PageController();
@@ -36,7 +35,7 @@ class BottomPageController extends GetxController {
   changeTabIndex(int index) async {
     tabIndex.value = index;
     update();
-    if (tabIndex.value == 1) {
+    if (tabIndex.value == 1 || tabIndex.value == 2 || tabIndex.value == 4) {
       await checkLogin();
       update();
     }

@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:vsaude_getx/app/modules/archive/archive_bindings.dart';
+import 'package:vsaude_getx/app/modules/archive/archive_page.dart';
 import 'package:vsaude_getx/app/modules/bottom_page/bottom_page.dart';
 import 'package:vsaude_getx/app/modules/bottom_page/bottom_page_bindings.dart';
 import 'package:vsaude_getx/app/modules/complete_reset_password/complete_reset_password_bindings.dart';
@@ -11,6 +13,8 @@ import 'package:vsaude_getx/app/modules/home/home_bindings.dart';
 import 'package:vsaude_getx/app/modules/home/home_page.dart';
 import 'package:vsaude_getx/app/modules/login/login_bindings.dart';
 import 'package:vsaude_getx/app/modules/login/login_page.dart';
+import 'package:vsaude_getx/app/modules/more/more_bindings.dart';
+import 'package:vsaude_getx/app/modules/more/more_page.dart';
 import 'package:vsaude_getx/app/modules/reset_password/reset_password_bindings.dart';
 import 'package:vsaude_getx/app/modules/reset_password/reset_password_page.dart';
 import 'package:vsaude_getx/app/modules/saude/saude_bindings.dart';
@@ -63,9 +67,19 @@ class AppPages {
       binding: SaudeBindings(),
     ),
     GetPage(
+      name: AppRoutes.ARCHIVE_PAGE,
+      page: () => ArchivePage(),
+      binding: ArchiveBindings(),
+    ),
+    GetPage(
       name: AppRoutes.CONTATO_PAGE,
       page: () => ContatoPage(),
       binding: ContatoBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.MORE_PAGE,
+      page: () => MorePage(),
+      binding: MoreBindings(),
     ),
   ];
 }
