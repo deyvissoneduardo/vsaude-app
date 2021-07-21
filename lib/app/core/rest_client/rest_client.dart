@@ -11,7 +11,14 @@ abstract class RestClient {
     Map<String, dynamic> headers,
   });
 
-  // get();
+  Future<RestClientResponse> get<T>(
+    String path, {
+    Options options,
+    dynamic data,
+    Map<String, dynamic> queryParameters,
+    Map<String, dynamic> headers,
+  });
+
   // update();
   // delete();
   // path();

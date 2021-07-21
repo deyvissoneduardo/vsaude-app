@@ -12,7 +12,10 @@ class HomePage extends GetView<HomeController> {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: Text('logado'),
+        child: Text(
+          'Home page',
+          style: TextStyle(fontSize: 25),
+        ),
       ),
     );
   }

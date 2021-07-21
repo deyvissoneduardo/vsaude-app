@@ -6,16 +6,20 @@ import 'package:vsaude_getx/app/core/constantes/constants.dart';
 import 'package:vsaude_getx/app/core/models/login/login_model.dart';
 import 'package:vsaude_getx/app/core/models/reset_password/reset_password_model.dart';
 import 'package:vsaude_getx/app/core/repository/login/login_repository_rest_client.dart';
+import 'package:vsaude_getx/app/core/repository/repository_local/local_data_user/local_data_user_rest_client.dart';
 import 'package:vsaude_getx/app/routes/app_routes.dart';
 
 class LoginController extends GetxController {
-  TextEditingController controllerEmail = TextEditingController();
-  TextEditingController controllerPassword = TextEditingController();
+  TextEditingController controllerEmail =
+      TextEditingController(text: 'lbadias@gmail.com');
+  TextEditingController controllerPassword =
+      TextEditingController(text: '123qwe');
   GlobalKey<FormState> formKey = GlobalKey();
   LoginRepositoryRestClient repository = Get.find();
+  LocalDataUserRestClient repositoryLocal = LocalDataUserRestClient();
 
   @override
-  onInit() {
+  void onInit() {
     controllerEmail.obs;
     controllerPassword.obs;
     formKey.obs;
@@ -24,6 +28,7 @@ class LoginController extends GetxController {
 
   // valida dados do login
   validForm() {
+    singIn();
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       singIn();
@@ -46,10 +51,20 @@ class LoginController extends GetxController {
         userNameOrEmailAddress: controllerEmail.text,
         password: controllerPassword.text,
       ));
-      Get.offNamedUntil(AppRoutes.HOME, (route) => false);
+      saveDataLocal();
+      Get.back();
     } on DioError catch (e) {
       repository.error(e);
     }
+  }
+
+  Future<bool> saveDataLocal() async {
+    await repositoryLocal.saveDataUser(LoginModel(
+      mobileProjectId: Constants.PROJECT_ID,
+      userNameOrEmailAddress: controllerEmail.text,
+      password: controllerPassword.text,
+    ));
+    return true;
   }
 
   nextRegisterUser() => Get.toNamed(AppRoutes.CREATE_MOBILE);

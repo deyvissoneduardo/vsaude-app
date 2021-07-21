@@ -11,48 +11,55 @@ class BottomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BottomPageController>(builder: (_) {
-      return Scaffold(
-          body: PageView(
-            controller: _.pageController,
-            onPageChanged: (index) {
-              _.changeTabIndex(index);
-            },
-            children: [
-              HomePage(),
-              SaudePage(),
-              ContatoPage(),
-            ],
-          ),
-          bottomNavigationBar: Obx(
-            () => BottomNavyBar(
-              selectedIndex: _.index,
-              showElevation: true,
-              onItemSelected: (index) {
+    return LayoutBuilder(builder: (context, constraints) {
+      return GetBuilder<BottomPageController>(builder: (_) {
+        return Scaffold(
+            body: PageView(
+              controller: _.pageController,
+              onPageChanged: (index) {
                 _.changeTabIndex(index);
-                _.pageController.jumpToPage(index);
               },
-              items: <BottomNavyBarItem>[
-                BottomNavyBarItem(
-                    icon: Icon(Icons.home),
-                    title: Text('Home'),
-                    activeColor: Colors.orange,
-                    inactiveColor: Colors.black),
-                BottomNavyBarItem(
-                  icon: Icon(Icons.home),
-                  title: Text('Saúde'),
-                  activeColor: Colors.orange,
-                  inactiveColor: Colors.black,
-                ),
-                BottomNavyBarItem(
-                  icon: Icon(Icons.home),
-                  title: Text('Contato'),
-                  inactiveColor: Colors.black,
-                  activeColor: Colors.orange,
-                ),
+              children: [
+                HomePage(),
+                SaudePage(),
+                ContatoPage(),
               ],
             ),
-          ));
+            bottomNavigationBar: Obx(
+              () => BottomNavyBar(
+                selectedIndex: _.index,
+                showElevation: true,
+                iconSize: 25,
+                curve: Curves.easeInCirc,
+                onItemSelected: (index) {
+                  _.changeTabIndex(index);
+                  _.pageController.jumpToPage(index);
+                },
+                items: <BottomNavyBarItem>[
+                  BottomNavyBarItem(
+                      textAlign: TextAlign.center,
+                      icon: Icon(Icons.home_outlined),
+                      title: Center(child: Text('Home')),
+                      activeColor: Colors.orange,
+                      inactiveColor: Colors.black),
+                  BottomNavyBarItem(
+                    textAlign: TextAlign.center,
+                    icon: Icon(Icons.access_alarm_rounded),
+                    title: Center(child: Text('Saúde')),
+                    activeColor: Colors.orange,
+                    inactiveColor: Colors.black,
+                  ),
+                  BottomNavyBarItem(
+                    icon: Icon(Icons.info_outline),
+                    textAlign: TextAlign.center,
+                    title: Center(child: Text('Contato')),
+                    inactiveColor: Colors.black,
+                    activeColor: Colors.orange,
+                  ),
+                ],
+              ),
+            ));
+      });
     });
   }
 }

@@ -11,34 +11,37 @@ class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return Scaffold(
-        body: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
-              alignment: Alignment.center,
-              child: Form(
-                key: controller.formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // email
-                    EmailLoginWidget(),
-                    // senha
-                    PasswordLoginWidget(),
-                    // btn logar
-                    SizedBox(height: 10),
-                    BtnLoginWidget(),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        BtnLoginRegisterWidget(),
-                        const SizedBox(height: 5),
-                        BtnLoginResetPassword()
-                      ],
-                    )
-                  ],
+      return Container(
+        height: constraints.maxHeight,
+        child: Scaffold(
+          body: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+                alignment: Alignment.center,
+                child: Form(
+                  // key: controller.formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // email
+                      EmailLoginWidget(),
+                      // senha
+                      PasswordLoginWidget(),
+                      // btn logar
+                      SizedBox(height: 10),
+                      BtnLoginWidget(),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          BtnLoginRegisterWidget(),
+                          const SizedBox(height: 5),
+                          BtnLoginResetPassword()
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

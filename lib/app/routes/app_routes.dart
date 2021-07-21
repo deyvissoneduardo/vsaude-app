@@ -1,4 +1,5 @@
 class AppRoutes {
+  static const SPLASH_SCREEN = 'splash_screen_page';
   static const LOGIN = 'login_page';
   static const BOTTOM_PAGE = 'bottom_page';
   static const HOME = 'home_page';

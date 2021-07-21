@@ -3,7 +3,7 @@ import 'dart:convert';
 class LoginResult {
   String? accessToken;
   String? encryptedAccessToken;
-  int? expireInSeconds;
+  DateTime? expireInSeconds;
   int? userId;
 
   LoginResult({
@@ -13,17 +13,10 @@ class LoginResult {
     this.userId,
   });
 
-  Map toJson() => {
-        'accessToken': this.accessToken,
-        'encryptedAccessToken': this.encryptedAccessToken,
-        'expireInSeconds': this.expireInSeconds,
-        'userId': this.userId
-      };
-
   LoginResult copyWith({
     String? accessToken,
     String? encryptedAccessToken,
-    int? expireInSeconds,
+    DateTime? expireInSeconds,
     int? userId,
   }) {
     return LoginResult(
@@ -38,7 +31,7 @@ class LoginResult {
     return {
       'accessToken': accessToken,
       'encryptedAccessToken': encryptedAccessToken,
-      'expireInSeconds': expireInSeconds,
+      'expireInSeconds': expireInSeconds?.toString(),
       'userId': userId,
     };
   }
@@ -47,10 +40,13 @@ class LoginResult {
     return LoginResult(
       accessToken: map['accessToken'],
       encryptedAccessToken: map['encryptedAccessToken'],
-      expireInSeconds: map['expireInSeconds'],
+      expireInSeconds:
+          DateTime.fromMillisecondsSinceEpoch(map['expireInSeconds']),
       userId: map['userId'],
     );
   }
+
+  String toJson() => json.encode(toMap());
 
   factory LoginResult.fromJson(String source) =>
       LoginResult.fromMap(json.decode(source));

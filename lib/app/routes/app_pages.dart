@@ -15,11 +15,18 @@ import 'package:vsaude_getx/app/modules/reset_password/reset_password_bindings.d
 import 'package:vsaude_getx/app/modules/reset_password/reset_password_page.dart';
 import 'package:vsaude_getx/app/modules/saude/saude_bindings.dart';
 import 'package:vsaude_getx/app/modules/saude/saude_page.dart';
+import 'package:vsaude_getx/app/modules/splash_screen/splash_screen_bindings.dart';
+import 'package:vsaude_getx/app/modules/splash_screen/splash_screen_page.dart';
 
 import 'app_routes.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
+    GetPage(
+      name: AppRoutes.SPLASH_SCREEN,
+      page: () => SplashScreenPage(),
+      binding: SplashScreenBindings(),
+    ),
     GetPage(
       name: AppRoutes.BOTTOM_PAGE,
       page: () => BottomPage(),

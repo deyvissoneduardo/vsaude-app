@@ -7,9 +7,16 @@ class ContatoPage extends GetView<ContatoController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('ContatoPage'),
       ),
-      body: Container(),
+      body: Container(
+        alignment: Alignment.center,
+        child: Text(
+          'Contato page',
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
     );
   }
 }
